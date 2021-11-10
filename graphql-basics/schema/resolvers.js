@@ -43,6 +43,13 @@ const resolvers = {
 			});
 			console.log(userUpdated);
 			return userUpdated;
+		},
+		deleteUser: (parent, args) => {
+			const id = args.id;
+
+			_.remove(UserList, { id: Number(id) });
+
+			return null;
 		}
 	},
 	User: {
