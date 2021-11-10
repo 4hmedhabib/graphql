@@ -23,7 +23,28 @@ const resolvers = {
 			return movie;
 		}
 	},
-
+	Mutation: {
+		createUser: (parent, args) => {
+			const user = args.input;
+			const lastId = UserList[UserList.length - 1].id;
+			user.id = lastId + 1;
+			UserList.push(user);
+			return user;
+		},
+		updateUsername: (parent, args) => {
+			const { id, username } = args.input;
+			let userUpdated;
+			UserList.forEach((user) => {
+				if (user.id === Number(id)) {
+					console.log('Your user is ', user);
+					user.username = username;
+					userUpdated = user;
+				}
+			});
+			console.log(userUpdated);
+			return userUpdated;
+		}
+	},
 	User: {
 		favoriteMovies: () => {
 			return _.filter(MovieList, (movie) => movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010);
