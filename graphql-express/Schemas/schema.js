@@ -1,17 +1,7 @@
-const userData = require('./MOCK_DATA.json');
+const userData = require('../MOCK_DATA.json');
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLList } = require('graphql');
-
-const UserType = new GraphQLObjectType({
-	name: 'User',
-	fields: () => ({
-		id: { type: GraphQLInt },
-		firstName: { type: GraphQLString },
-		lastName: { type: GraphQLString },
-		email: { type: GraphQLString },
-		password: { type: GraphQLString }
-	})
-});
+const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLList } = graphql;
+const UserType = require('./TypeDefs/UserType');
 
 const RootQuery = new GraphQLObjectType({
 	name: 'RootQueryType',

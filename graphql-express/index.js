@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
 const PORT = 6969;
-const userData = require('./MOCK_DATA.json');
-const graphql = require('graphql');
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema');
+const schema = require('./Schemas/schema');
 
 app.use(
-	'/graphql',
+	'/brightus',
 	graphqlHTTP({
 		schema,
 		graphiql: true
