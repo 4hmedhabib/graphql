@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../graphql/Mutations";
 
 const Form = () => {
   const [firstname, setFirstname] = useState("");
@@ -6,9 +8,22 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [craeteUser, { error, loading }] = useMutation(CREATE_USER);
+
   const addUser = (e) => {
     e.preventDefault();
-    console.log(firstname, lastname, email, password);
+    craeteUser({
+      variables: {
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
+        password: password,
+      },
+    });
+
+    if (error) {
+      console.log(error);
+    }
   };
 
   return (
